@@ -57,7 +57,7 @@ tkCoin.addBlock(new Block(1, "07-10-2021", { name: "Person 1" }));
 tkCoin.addBlock(new Block(1, "08-10-2021", { name: "Person 2" }));
 
 console.log(tkCoin.verifyChain());
-tkCoin.chain[2].data = { name: "Manish" };
+tkCoin.chain[2].data = { name: "Hacker trying to change the chain data" };
 
 console.log(tkCoin.verifyChain());
 // tkCoin.print()
