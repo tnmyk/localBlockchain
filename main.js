@@ -7,6 +7,7 @@ class Block {
     this.data = data;
     this.previousHash = previousHash;
     this.hash = this.calculateHash();
+    this.nonce = 0;
   }
 
   calculateHash() {
@@ -14,8 +15,16 @@ class Block {
       this.index +
         this.timestamp +
         JSON.stringify(this.data) +
-        this.previousHash
+        this.previousHash+this.nonce
     ).toString();
+  }
+
+  mineBlock(difficulty){
+    while(this.hash.substring(0,difficulty) !== '0'.repeat(difficulty)){
+      this.hash = this.calculateHash();
+      ++this.nonce;
+    }
+    console.log("Block Mined, Hash: ",this.hash);
   }
 }
 
@@ -34,7 +43,8 @@ class Blockchain {
 
   addBlock(newBlock) {
     newBlock.previousHash = this.getLastBlock().hash;
-    newBlock.hash = newBlock.calculateHash();
+    // newBlock.hash = newBlock.calculateHash();
+    newBlock.mineBlock(4)
     this.chain.push(newBlock);
   }
   verifyChain() {
@@ -56,8 +66,3 @@ tkCoin.addBlock(new Block(1, "06-10-2021", { name: "Tanmay Kachroo" }));
 tkCoin.addBlock(new Block(1, "07-10-2021", { name: "Person 1" }));
 tkCoin.addBlock(new Block(1, "08-10-2021", { name: "Person 2" }));
 
-console.log(tkCoin.verifyChain());
-tkCoin.chain[2].data = { name: "Hacker trying to change the chain data" };
-
-console.log(tkCoin.verifyChain());
-// tkCoin.print()
