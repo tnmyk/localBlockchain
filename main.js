@@ -52,7 +52,7 @@ class Blockchain {
 
 let tkCoin = new Blockchain();
 
-tkCoin.addBlock(new Block(1, "06-10-2021", { name: "Tanmay Kachroo" }));
+tkCoin.addBlock(new Block(1, "06-10-2021", { name: "Tanmay  " }));
 tkCoin.addBlock(new Block(1, "07-10-2021", { name: "Person 1" }));
 tkCoin.addBlock(new Block(1, "08-10-2021", { name: "Person 2" }));
 
